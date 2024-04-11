@@ -1,10 +1,41 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout::head">
+    <meta charset="UTF-8">
+    <title>Calculadora Promedio</title>
 </head>
 <body>
-$END$
+    <nav th:replace="layout::menu"></nav>
+
+    <div class="card">
+        <div class="card-header text-bg-danger">
+            Calculadora Promedio
+        </div>
+        <div class="card-body">
+            <form th:action="@{/calificaciones}" method="post" th:object="${calificacionesModel}">
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="txtnota1"
+                           placeholder="Calificacion 1" th:field="*{nota1}">
+                    <label for="txtnota1">Ingrese su Primera Calificacion</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="txtnota2"
+                           placeholder="Calificacion 2" th:field="*{nota2}">
+                    <label for="txtnota2">Ingrese su Segunda Calificacion</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="txtnota3"
+                           placeholder="Calificacion 2" th:field="*{nota3}">
+                    <label for="txtnota3">Ingrese su Tercera Calificacion</label>
+                </div>
+                <hr />
+                <button type="submit" class="btn btn-primary">CALCULAR</button>
+                <br>
+                <div th:if="${mostrarResultado}" class="alert alert-danger" role="alert">
+                    <span th:text="${respuesta} ?: ''"></span>
+                </div>
+            </form>
+        </div>
+    </div>
 </body>
 </html>
