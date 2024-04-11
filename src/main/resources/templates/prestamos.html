@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout::head">
+    <meta charset="UTF-8">
+    <title>Calculadora de Préstamos</title>
+</head>
+<body>
+<nav th:replace="layout::menu"></nav>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <h1 class="mb-4">Calculadora de Préstamos</h1>
+
+            <div class="card"> <!-- Agregar un cuadro (card) -->
+                <div class="card-body">
+                    <form action="#" th:action="@{/calcularPrestamo}" th:object="${prestamos}" method="post">
+                        <div class="form-group">
+                            <label for="prestamo">Monto del préstamo:</label>
+                            <input type="number" class="form-control" id="prestamo" th:field="*{prestamo}" required>
+                        </div>
+                        <div class="text-center mt-3">
+                            <button type="submit" class="btn btn-primary">Calcular</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div th:if="${mostrarMensaje}" class="mt-4">
+                <div class="alert alert-info" role="alert">
+                    <h2 class="alert-heading">Resultado del cálculo:</h2>
+                    <p th:text="${resultado}"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

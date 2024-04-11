@@ -5,37 +5,41 @@
     <title>Calculadora Promedio</title>
 </head>
 <body>
-    <nav th:replace="layout::menu"></nav>
+<nav th:replace="layout::menu"></nav>
 
-    <div class="card">
-        <div class="card-header text-bg-danger">
-            Calculadora Promedio
-        </div>
-        <div class="card-body">
-            <form th:action="@{/calificaciones}" method="post" th:object="${calificacionesModel}">
-                <div class="form-floating mb-3">
-                    <input type="text" class="form-control" id="txtnota1"
-                           placeholder="Calificacion 1" th:field="*{nota1}">
-                    <label for="txtnota1">Ingrese su Primera Calificacion</label>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header bg-danger text-white">
+                    <h5 class="m-0">Calculadora Promedio</h5>
                 </div>
-                <div class="form-floating mb-3">
-                    <input type="text" class="form-control" id="txtnota2"
-                           placeholder="Calificacion 2" th:field="*{nota2}">
-                    <label for="txtnota2">Ingrese su Segunda Calificacion</label>
+                <div class="card-body">
+                    <form th:action="@{/calificaciones}" method="post" th:object="${calificacionesModel}">
+                        <div class="mb-3">
+                            <label for="txtnota1" class="form-label">Calificación 1:</label>
+                            <input type="text" class="form-control" id="txtnota1" placeholder="Ingrese su Primera Calificación" th:field="*{nota1}">
+                        </div>
+                        <div class="mb-3">
+                            <label for="txtnota2" class="form-label">Calificación 2:</label>
+                            <input type="text" class="form-control" id="txtnota2" placeholder="Ingrese su Segunda Calificación" th:field="*{nota2}">
+                        </div>
+                        <div class="mb-3">
+                            <label for="txtnota3" class="form-label">Calificación 3:</label>
+                            <input type="text" class="form-control" id="txtnota3" placeholder="Ingrese su Tercera Calificación" th:field="*{nota3}">
+                        </div>
+                        <hr>
+                        <button type="submit" class="btn btn-primary">CALCULAR</button>
+                    </form>
+                    <div th:if="${mostrarResultado}" class="mt-3">
+                        <div class="alert alert-danger" role="alert">
+                            <span th:text="${respuesta} ?: ''"></span>
+                        </div>
+                    </div>
                 </div>
-                <div class="form-floating mb-3">
-                    <input type="text" class="form-control" id="txtnota3"
-                           placeholder="Calificacion 2" th:field="*{nota3}">
-                    <label for="txtnota3">Ingrese su Tercera Calificacion</label>
-                </div>
-                <hr />
-                <button type="submit" class="btn btn-primary">CALCULAR</button>
-                <br>
-                <div th:if="${mostrarResultado}" class="alert alert-danger" role="alert">
-                    <span th:text="${respuesta} ?: ''"></span>
-                </div>
-            </form>
+            </div>
         </div>
     </div>
+</div>
 </body>
 </html>
