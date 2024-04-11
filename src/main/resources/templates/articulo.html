@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout::head">
+    <meta charset="UTF-8">
+    <title>Precio del Artículo</title>
+</head>
+<body>
+<nav th:replace="layout::menu">
+
+</nav>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <h5 class="card-header">Calcular precio de artículo</h5>
+                <div class="card-body">
+                    <form th:action="@{/calcularPrecio}" th:object="${articulo}" method="post">
+                        <div class="form-group">
+                            <label for="Cantidad_Articulo">Ingrese la cantidad de artículos:</label>
+                            <input type="number" class="form-control" id="Cantidad_Articulo" th:field="*{Cantidad_Articulo}" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="Precio_Articulo">Ingrese el precio unitario del artículo:</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">$</span>
+                                </div>
+                                <input type="number" step="0.01" class="form-control" id="Precio_Articulo" th:field="*{Precio_Articulo}" required>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Calcular</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row justify-content-center mt-3">
+        <div th:if="${precio_total}" class="col-md-6">
+            El total a pagar es: <strong th:text="${precio_total}"></strong>
+        </div>
+    </div>
+</div>
+</body>
+</html>
