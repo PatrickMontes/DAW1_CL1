@@ -25,7 +25,6 @@ public class PrestamosController {
         int num_cuotas;
         double monto_cuota;
 
-        // Determinar el interés según el monto del préstamo
         double interes;
         if (prestamo < 4000) {
             interes = 0.12;  // 12%
@@ -33,10 +32,7 @@ public class PrestamosController {
             interes = 0.10;  // 10%
         }
 
-        // Calcular el monto total del préstamo con interés
         double monto_total = prestamo * (1 + interes);
-
-        // Determinar el número de cuotas según el esquema de cobros
         if (prestamo > 5000) {
             num_cuotas = 3;
         } else if (prestamo < 1000) {
@@ -47,9 +43,7 @@ public class PrestamosController {
             num_cuotas = 5;
         }
 
-        // Calcular el monto de cada cuota
         monto_cuota = monto_total / num_cuotas;
-
         model.addAttribute("mostrarMensaje", true);
         model.addAttribute("resultado", "Debe pagar el préstamo en " + num_cuotas + " cuotas de $" + String.format("%.2f", monto_cuota) + " cada una.");
         return "prestamos";
